@@ -52,4 +52,15 @@ class Auth {
   signIn() {
     this.auth0.authorize();
   }
+
+  signOut() {
+    // clear id token, profile and expiration
+    this.idToken = null;
+    this.profile = null;
+    this.expireAt = null;
+  }
 }
+
+const auth0Client = new Auth();
+
+export default auth0Client;
