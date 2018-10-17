@@ -11,3 +11,6 @@ const app = express();
 
 // the database
 const questions = [];
+
+// enhance your app security with Helmet
+app.use(helmet());
