@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const jwt = require('express-jwt')
-const jwksRsa = require('jwks-rsa')
+const jwt = require("express-jwt");
+const jwksRsa = require("jwks-rsa");
 
 // define the Express app
 const app = express();
@@ -49,10 +49,15 @@ const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
-    jwksRequestsPerMinute: 5
+    jwksRequestsPerMinute: 5,
     jwksUri: `https://megalodon.auth0.com/.well-known/jwks.json`
-  })
-})
+  }),
+
+  // Validate the audience and the issuer.
+  audience: "wAPufRphlpmPgMdaMtbylFnBCOSJCi2Z",
+  issuer: `https://megalodon.auth0.com/`,
+  algorithms: ["RS256"]
+});
 
 // insert a new question
 app.post("/", (req, res) => {
