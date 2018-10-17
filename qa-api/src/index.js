@@ -23,3 +23,14 @@ app.use(cors());
 
 // log HTTP requests
 app.use(morgan("combined"));
+
+// retrieve all questions
+app.get("/", (req, res) => {
+  const qs = questions.map(q => ({
+    id: q.id,
+    title: q.title,
+    description: q.description,
+    answers: q.answers.length
+  }));
+  res.send(qs);
+});
