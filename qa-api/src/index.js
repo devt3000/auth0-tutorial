@@ -20,3 +20,6 @@ app.use(bodyParser.json());
 
 // enable all CORS requests
 app.use(cors());
+
+// log HTTP requests
+app.use(morgan("combined"));
